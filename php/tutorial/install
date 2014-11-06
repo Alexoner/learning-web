@@ -1,0 +1,2 @@
+#/bin/bash
+sudo rsync -av * /var/www/html/tut/

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			#div1, #div2
+			{float:left;width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+		</style>
+		<script>
+			function allowDrop(ev)
+			{//where to drop-ondragover
+				ev.preventDefault();
+				//by default,data/elements cannot be dropped in other elements
+			}
+
+			function drag(ev)
+			{//what to drag,ondragestart and setData
+				ev.dataTransfer.setData("Text",ev.target.id);
+				/*this method sets the data type and the value of 
+				the dragged data*/
+			}
+
+			function drop(ev)
+			{//do the drop-ondrop
+				ev.preventDefault();
+				var data=ev.dataTransfer.getData("Text");
+				ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<!--make an element draggable,draggable="true"-->
+			<img id="drag1" src="img_logo.gif" draggable="true"
+			ondragstart="drag(event)"
+			width="336" height="69">
+		</div>
+		<div id="div2" ondrop="drop(event)"
+			ondragover="allowDrop(event)">
+		</div>
+	</body>
+</html>

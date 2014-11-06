@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0054)http://people.iola.dk/olau/flot/examples/realtime.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Flot Examples</title>
+    <link href="./Flot Examples_files/layout.css" rel="stylesheet" type="text/css">
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" charset="UTF-8" src="./Flot Examples_files/logb01.js"></script><script src="./Flot Examples_files/hm.js"></script><script language="javascript" type="text/javascript" src="./Flot Examples_files/jquery.js"></script><style type="text/css"></style>
+    <script language="javascript" type="text/javascript" src="./Flot Examples_files/jquery.flot.js"></script>
+ <style>undefined</style><script></script><script id="hp_same_"></script><script id="hp_done_"></script></head>
+    <body>
+    <h1>Flot Examples</h1>
+
+    <div id="placeholder" style="width: 600px; height: 300px; padding: 0px; position: relative;"><canvas class="base" width="600" height="300"></canvas><canvas class="overlay" width="600" height="300" style="position: absolute; left: 0px; top: 0px;"></canvas><div class="tickLabels" style="font-size:smaller"><div class="yAxis y1Axis" style="color:#545454"><div class="tickLabel" style="position:absolute;text-align:right;top:289px;right:579px;width:21px">0</div><div class="tickLabel" style="position:absolute;text-align:right;top:230px;right:579px;width:21px">20</div><div class="tickLabel" style="position:absolute;text-align:right;top:172px;right:579px;width:21px">40</div><div class="tickLabel" style="position:absolute;text-align:right;top:113px;right:579px;width:21px">60</div><div class="tickLabel" style="position:absolute;text-align:right;top:55px;right:579px;width:21px">80</div><div class="tickLabel" style="position:absolute;text-align:right;top:-3px;right:579px;width:21px">100</div></div></div></div>
+
+    <p>You can update a chart periodically to get a real-time effect
+    by using a timer to insert the new data in the plot and redraw it.</p>
+
+    <p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
+
+<script type="text/javascript">
+$(function () {
+    // we use an inline data source in the example, usually data would
+    // be fetched from a server
+    var data = [], totalPoints = 300;
+    function getRandomData() {
+        if (data.length > 0)
+            data = data.slice(1);
+
+        // do a random walk
+        while (data.length < totalPoints) {
+            var prev = data.length > 0 ? data[data.length - 1] : 50;
+            var y = prev + Math.random() * 10 - 5;
+            if (y < 0)
+                y = 0;
+            if (y > 100)
+                y = 100;
+            data.push(y);
+        }
+
+        // zip the generated y values with the x values
+        var res = [];
+        for (var i = 0; i < data.length; ++i)
+            res.push([i, data[i]])
+        return res;
+    }
+
+    // setup control widget
+    var updateInterval = 30;
+    $("#updateInterval").val(updateInterval).change(function () {
+        var v = $(this).val();
+        if (v && !isNaN(+v)) {
+            updateInterval = +v;
+            if (updateInterval < 1)
+                updateInterval = 1;
+            if (updateInterval > 2000)
+                updateInterval = 2000;
+            $(this).val("" + updateInterval);
+        }
+    });
+
+    // setup plot
+    var options = {
+        series: { shadowSize: 0 }, // drawing is faster without shadows
+        yaxis: { min: 0, max: 100 },
+        xaxis: { show: false }
+    };
+    var plot = $.plot($("#placeholder"), [ getRandomData() ], options);
+
+    function update() {
+        plot.setData([ getRandomData() ]);
+        // since the axes don't change, we don't need to call plot.setupGrid()
+        plot.draw();
+        
+        setTimeout(update, updateInterval);
+    }
+
+    update();
+});
+</script>
+
+ 
+
+<script type="text/javascript" async="" src="./Flot Examples_files/cnzz.js"></script><script type="text/javascript">var vglnk = {api_url: '//api.viglink.com/api', key: '084c74521c465af0d8f08b63422103cc'};</script><script type="text/javascript" async="" src="./Flot Examples_files/vglnk.js"></script></body></html>
