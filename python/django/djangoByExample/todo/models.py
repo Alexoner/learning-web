@@ -22,3 +22,5 @@ class Item(models.Model):
         return "<a href='%s'>Done</a>" % reverse("todo.views.mark_done",
                                                  args=[self.pk])
     mark_done.allow_tags = True
+    mark_done.admin_order_field = 'mark_done'
+    mark_done.short_description = 'mark as done'
