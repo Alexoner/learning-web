@@ -1,0 +1,3 @@
+[submodule "python/django/test"]
+	path = python/django/lightbird
+	url = git@github.com:akulakov/django.git
