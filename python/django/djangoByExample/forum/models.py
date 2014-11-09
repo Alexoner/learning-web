@@ -13,6 +13,21 @@ class Forum(models.Model):
     def __unicode__(self):
         return self.title
 
+    def num_posts(self):
+        return sum([t.num_posts() for t in self.thread_set.all()])
+
+    def last_post(self):
+        if self.thread_set.count():
+            last = None
+            for t in self.thread_set.all():
+                l = t.last_post()
+                if l:
+                    if not last:
+                        last = l
+                    elif l.created > last.created:
+                        last = l
+            return last
+
 
 class Thread(models.Model):
     title = models.CharField(max_length=60)
@@ -22,6 +37,16 @@ class Thread(models.Model):
 
     def __unicode__(self):
         return unicode(self.creator) + " - " + self.title
+
+    def num_posts(self):
+        return self.post_set.count()
+
+    def num_replies(self):
+        return self.post_set.count() - 1
+
+    def last_post(self):
+        if self.post_set.count():
+            return self.post_set.order_by("created")[0]
 
 
 class Post(models.Model):
