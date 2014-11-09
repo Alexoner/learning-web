@@ -12,4 +12,6 @@ urlpatterns = patterns('',
                        url(r'^mark_done/(\d*)/$', "todo.views.mark_done"),
                        # url(r'^item_action/(done|delete|onhold)/(\d*)/$',
                        #"item_action"),
+                       url(r'^forum/',
+                           include('forum.urls', namespace='forum')),
                        )
