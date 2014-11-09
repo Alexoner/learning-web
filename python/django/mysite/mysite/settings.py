@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'polls',
     'forums',
     'account',
+    'cd_library',
 )
 
 MIDDLEWARE_CLASSES = (
