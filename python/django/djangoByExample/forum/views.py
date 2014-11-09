@@ -41,3 +41,14 @@ def forum(request, pk):
     threads = mk_paginator(request, threads, 20)
     return render_to_response("forum/forum.html",
                               add_scrf(request, threads=threads, pk=pk))
+
+
+def thread(request, pk):
+    """Listing of posts in a thread."""
+    posts = Post.objects.filter(thead=pk).order_by("created")
+    posts = mk_paginator(request, posts, 15)
+    title = Thread.objects.get(pk=pk).title
+
+    return render_to_response("forum/thread.html",
+                              add_scrf(request, posts=posts, pk=pk,
+                                       title=title, media_url=""))
