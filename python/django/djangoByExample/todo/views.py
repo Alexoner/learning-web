@@ -41,7 +41,7 @@ def onhold_done(request, mode, action, pk):
     """Toggle Done/ onhold on/off"""
     item = Item.objects.get(pk=pk)
 
-    if action = "on":
+    if action == "on":
         if mode == "done":
             item.done = True
         elif mode == "onhold":
@@ -53,4 +53,14 @@ def onhold_done(request, mode, action, pk):
             item.onhold = False
 
     item.save()
+    return HttpResponse('')
+
+
+def progress(request, pk):
+    """Set task progress"""
+    p = request.POST
+    if "progress" in p:
+        item = Item.objects.get(pk=pk)
+        item.progress = int(p["progress"])
+        item.save()
     return HttpResponse('')
