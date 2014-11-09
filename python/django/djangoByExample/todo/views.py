@@ -14,3 +14,23 @@ def mark_done(request, pk):
     item.done = True
     item.save()
     return HttpResponseRedirect(reverse("admin:todo_item_changelist"))
+
+
+@staff_member_required
+def item_action(request, action, pk):
+    """ Mark done,toggl onhold or delete a todo item."""
+    if action == "done":
+        item = Item.objects.get(pk=pk)
+        item.done = True
+        item.save()
+    elif action == "onhold":
+        item = Item.objects.get(pk=pk)
+        if item.onhold:
+            item.onhold = False
+        else:
+            item.onhold = True
+        item.save()
+    elif action == "delete":
+        Item.objects.filter(pk=pk).delete()
+
+    return HttpResponseRedirect(reverse("admin:todo_item_changelist"))

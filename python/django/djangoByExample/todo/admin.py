@@ -10,9 +10,12 @@ from django.core.urlresolvers import reverse
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ["name", "mark_done",
-                    "priority", "difficulty", "created", "done"]
-    list_filter = ["created"]
+    # display individual fields in admin "change list"
+    list_display = ["name", "priority", "difficulty", "mark_done",
+                    #"created", "progress_", "delete", "onhold_", "done_"]
+                    "progress_", "done", "user"]
+    list_filter = ["priority", "created",
+                   "difficulty", "onhold", "done", "user"]
     search_fields = ["name"]
 
 
