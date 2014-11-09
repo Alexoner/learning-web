@@ -34,3 +34,23 @@ def item_action(request, action, pk):
         Item.objects.filter(pk=pk).delete()
 
     return HttpResponseRedirect(reverse("admin:todo_item_changelist"))
+
+
+@staff_member_required
+def onhold_done(request, mode, action, pk):
+    """Toggle Done/ onhold on/off"""
+    item = Item.objects.get(pk=pk)
+
+    if action = "on":
+        if mode == "done":
+            item.done = True
+        elif mode == "onhold":
+            item.onhold = True
+    elif action == "off":
+        if mode == "done":
+            item.done = False
+        elif mode == "onhold":
+            item.onhold = False
+
+    item.save()
+    return HttpResponse('')
