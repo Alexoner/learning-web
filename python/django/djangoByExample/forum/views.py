@@ -52,3 +52,43 @@ def thread(request, pk):
     return render_to_response("forum/thread.html",
                               add_scrf(request, posts=posts, pk=pk,
                                        title=title, media_url=""))
+
+
+def post(request, ptype, pk):
+    """Display a post form."""
+    action = reverse("forum.views.%s" % ptype, args=[pk])
+    if ptype == "new_thread":
+        title = "Start New Topic"
+        subject = ''
+    elif ptype == "replay":
+        title = "Reply"
+        subject = "Re:" + Thread.objects.get(pk=pk).title
+
+    return render_to_response("forum/post.html",
+                              add_scrf(request, subject=subject,
+                                       action=action, title=title))
+
+
+def new_thread(request, pk):
+    """Start a new thread"""
+    p = request.POST
+    if p["subject"] and p["body"]:
+        forum = Forum.objects.get(pk=pk)
+        thread = Thread.objects.create(forum=forum, title=p["subject"],
+                                       creator=request.user)
+        Post.objects.create(thread=thread, title=p["subject"],
+                            body=p["body"], creator=request.user)
+    return HttpResponseRedirect(reverse("forum.views.forum", args=[pk]))
+
+
+def reply(request, pk):
+    """Reply to a thread."""
+    p = request.POST
+    if p["body"]:
+        thread = Thread.objects.get(pk=pk)
+        post = Post.objects.create(thread=thread, title=p["subject"],
+                                   body=p["body"],
+                                   creator=request.user)
+
+    return HttpResponseRedirect(reverse("forum.views.thread", args=[pk]) +
+                                "?page=last")
