@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rango</title>
+        <title>Account</title>
     </head>
 
     <body>
-        <h1>Register with Rango</h1>
+        <h1>Register with mysite</h1>
 
         {% if registered %}
-        Rango says: <strong>thank you for registering!</strong>
+        Says: <strong>thank you for registering!</strong>
         <a href="/rango/">Return to the homepage.</a><br />
         {% else %}
-        Rango says: <strong>register here!</strong><br />
+        Says: <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="/rango/register/"
+        <form id="user_form" method="post" action="/account/register/"
                                            enctype="multipart/form-data">
 
             {% csrf_token %}
