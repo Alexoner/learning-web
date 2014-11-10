@@ -1,5 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
 urlpatterns = patterns('',
                        # Examples:
@@ -13,4 +16,12 @@ urlpatterns = patterns('',
                            include('forums.urls', namespace='forums')),
                        url(r'^account/',
                            include('account.urls', namespace='account')),
+                       # url(r'^accounts/',
+                       # include('registration.backends.default.urls')),
+                       (r'^accounts/login/$', login),
+                       (r'^accounts/logout/$', logout),
+                       (r'^accounts/register/$', CreateView(
+                        template_name='register.html',
+                        form_class=UserCreationForm,
+                        success_url='/polls/index/'))
                        )
