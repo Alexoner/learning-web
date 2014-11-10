@@ -1,7 +1,9 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+
 from account.forms import UserForm, UserProfileForm
 
 # Create your views here.
@@ -76,7 +78,7 @@ def user_login(request):
             # active
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/polls/')
             else:
                 # A inactive account was used - no logging in!
                 return HttpResponse("Your account is disabled")
@@ -89,4 +91,15 @@ def user_login(request):
     else:
         # No context variables to pass to the template system,hence the
         # blank dictionary object...
-        return render_to_response('account/login.html', {}, context)
+        return render_to_response('accounts/login.html', {}, context)
+
+
+# use the login_required() decorator to ensure only those logged in can
+# access the view
+@login_required(login_url='/accounts/login/')
+def user_logout(request):
+    # Since we know the user is logged in,we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage
+    return HttpResponseRedirect('/admin/')
