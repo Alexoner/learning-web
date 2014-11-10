@@ -1,5 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, HttpResponseRedirect
 from account.forms import UserForm, UserProfileForm
 
 # Create your views here.
@@ -11,7 +13,7 @@ def register(request):
 
     registered = False
 
-    if request.mothod == 'POST':
+    if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
 
@@ -53,3 +55,38 @@ def register(request):
          'registered': registered},
         context
     )
+
+
+def user_login(request):
+    # Like before,obtain the context for user's requst
+    context = RequestContext(request)
+
+    # If the request is a HTTP POST,try to pull out the relevant information
+    if request.method == 'POST':
+        # Gather the username and password provided by the user
+        # This is information is obtained from the login form
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Django's machinery to check if the combination is valid
+        user = authenticate(username=username, password=password)
+
+        # have a User object,details are correct
+        if user:
+            # active
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                # A inactive account was used - no logging in!
+                return HttpResponse("Your account is disabled")
+        else:
+            # Bad login details
+            print "Invalid login details:{0},{1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+
+    # request not a HTTP POST.
+    else:
+        # No context variables to pass to the template system,hence the
+        # blank dictionary object...
+        return render_to_response('account/login.html', {}, context)
