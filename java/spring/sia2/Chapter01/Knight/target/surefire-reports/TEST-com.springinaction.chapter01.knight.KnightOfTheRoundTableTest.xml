@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.014" errors="0" skipped="0" tests="1" name="com.springinaction.chapter01.knight.KnightOfTheRoundTableTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/home/onerhao/packages/jdk1.7.0_75/jre/lib/amd64"/>
+    <property name="java.vm.version" value="24.75-b04"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/onerhao/Documents/mine/spring/spring-in-action/sia2/Chapter01/Knight"/>
+    <property name="java.runtime.version" value="1.7.0_75-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="basedir" value="/home/onerhao/Documents/mine/spring/spring-in-action/sia2/Chapter01/Knight"/>
+    <property name="java.endorsed.dirs" value="/home/onerhao/packages/jdk1.7.0_75/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter530770464437620917.jar"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="surefire.test.class.path" value="/home/onerhao/Documents/mine/spring/spring-in-action/sia2/Chapter01/Knight/target/test-classes:/home/onerhao/Documents/mine/spring/spring-in-action/sia2/Chapter01/Knight/target/classes:/home/onerhao/.m2/repository/aspectj/aspectjweaver/1.5.3/aspectjweaver-1.5.3.jar:/home/onerhao/.m2/repository/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.jar:/home/onerhao/.m2/repository/xml-apis/xml-apis/1.3.03/xml-apis-1.3.03.jar:/home/onerhao/.m2/repository/org/springframework/spring/2.0.6/spring-2.0.6.jar:/home/onerhao/.m2/repository/commons-logging/commons-logging/1.1/commons-logging-1.1.jar:/home/onerhao/.m2/repository/log4j/log4j/1.2.13/log4j-1.2.13.jar:/home/onerhao/.m2/repository/logkit/logkit/1.0.1/logkit-1.0.1.jar:/home/onerhao/.m2/repository/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.jar:/home/onerhao/.m2/repository/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar:/home/onerhao/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/onerhao/.m2/repository/junit-addons/junit-addons/1.4/junit-addons-1.4.jar:/home/onerhao/.m2/repository/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="3.16.0-23-generic"/>
+    <property name="user.home" value="/home/onerhao"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="user.name" value="onerhao"/>
+    <property name="java.class.path" value="/home/onerhao/Documents/mine/spring/spring-in-action/sia2/Chapter01/Knight/target/test-classes:/home/onerhao/Documents/mine/spring/spring-in-action/sia2/Chapter01/Knight/target/classes:/home/onerhao/.m2/repository/aspectj/aspectjweaver/1.5.3/aspectjweaver-1.5.3.jar:/home/onerhao/.m2/repository/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.jar:/home/onerhao/.m2/repository/xml-apis/xml-apis/1.3.03/xml-apis-1.3.03.jar:/home/onerhao/.m2/repository/org/springframework/spring/2.0.6/spring-2.0.6.jar:/home/onerhao/.m2/repository/commons-logging/commons-logging/1.1/commons-logging-1.1.jar:/home/onerhao/.m2/repository/log4j/log4j/1.2.13/log4j-1.2.13.jar:/home/onerhao/.m2/repository/logkit/logkit/1.0.1/logkit-1.0.1.jar:/home/onerhao/.m2/repository/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.jar:/home/onerhao/.m2/repository/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar:/home/onerhao/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/onerhao/.m2/repository/junit-addons/junit-addons/1.4/junit-addons-1.4.jar:/home/onerhao/.m2/repository/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar:"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/home/onerhao/packages/jdk1.7.0_75/jre"/>
+    <property name="sun.java.command" value="/tmp/surefirebooter530770464437620917.jar /tmp/surefire3799228348908854823tmp /tmp/surefire580307572280734942tmp"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_75"/>
+    <property name="java.ext.dirs" value="/home/onerhao/packages/jdk1.7.0_75/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.boot.class.path" value="/home/onerhao/packages/jdk1.7.0_75/jre/lib/resources.jar:/home/onerhao/packages/jdk1.7.0_75/jre/lib/rt.jar:/home/onerhao/packages/jdk1.7.0_75/jre/lib/sunrsasign.jar:/home/onerhao/packages/jdk1.7.0_75/jre/lib/jsse.jar:/home/onerhao/packages/jdk1.7.0_75/jre/lib/jce.jar:/home/onerhao/packages/jdk1.7.0_75/jre/lib/charsets.jar:/home/onerhao/packages/jdk1.7.0_75/jre/lib/jfr.jar:/home/onerhao/packages/jdk1.7.0_75/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="localRepository" value="/home/onerhao/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.004" classname="com.springinaction.chapter01.knight.KnightOfTheRoundTableTest" name="testEmbarkOnQuest"/>
+</testsuite>
