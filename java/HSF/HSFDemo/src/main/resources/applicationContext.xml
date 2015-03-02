@@ -24,4 +24,13 @@
 		</property>
 	</bean>
 
+	<bean id="HelloWorldConsumer" class="com.taobao.hsf.app.spring.util.HSFSpringConsumerBean"
+		init-method="init">
+		<property name="interfaceName">
+			<value>com.alibaba.zl.service.HelloWorldService</value>
+		</property>
+		<property name="version">
+			<value>1.0.0.daily</value>
+		</property>
+	</bean>
 </beans>
