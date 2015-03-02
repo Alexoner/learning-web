@@ -15,5 +15,13 @@
 		</listener-class>
 	</listener>
 
+	<servlet>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<servlet-class>com.alibaba.zl.servlet.HelloWorldServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<url-pattern>/HelloWorld</url-pattern>
+	</servlet-mapping>
 
 </web-app>
