@@ -15,10 +15,15 @@
  * limitations under the License.
  */
 
+/*
+ * a javabean
+ */
+
 package com.alibaba.webx.tutorial1.app1;
 
 public class Visitor {
     private String name;
+    private String passwd;
 
     public String getName() {
         return name;
@@ -26,5 +31,13 @@ public class Visitor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 }
