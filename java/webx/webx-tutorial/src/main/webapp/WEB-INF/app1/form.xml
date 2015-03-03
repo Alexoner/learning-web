@@ -37,6 +37,19 @@
                 </fm-validators:required-validator>
             </field>
         </group>
+
+        <group name="login">
+            <field  name="name" displayName="your name">
+                <fm-validators:required-validator>
+                    <message>You must fill in $\{displayName\}</message>
+                </fm-validators:required-validator>
+            </field>
+            <field name="passwd" displayName="password">
+                <fm-validators:required-validator>
+                    <message>You must fill in $\{displayName\}</message>
+                </fm-validators:required-validator>
+            </field>
+        </group>
     </services:form>
 
 </beans:beans>
