@@ -23,6 +23,8 @@ import com.alibaba.citrus.turbine.dataresolver.FormGroup;
 import com.alibaba.webx.tutorial1.app1.Visitor;
 
 public class RegisterAction {
+    /* get called when "event_submit_do_register" is routed
+     * */
     public void doRegister(@FormGroup("register") Visitor visitor, Navigator nav) {
         String name = visitor.getName();
         nav.redirectTo("app1Link").withTarget("form/welcome").withParameter("name", name);

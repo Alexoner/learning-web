@@ -17,6 +17,7 @@
 
         <uris:turbine-uri id="app1Link" exposed="true" extends="server">
             <componentPath>/</componentPath>
+            <!--componentpath indicates the form of "templates/screen/<component>/path"-->
         </uris:turbine-uri>
 
         <uris:turbine-content-uri id="app1Content" exposed="true" extends="app1Link" />
