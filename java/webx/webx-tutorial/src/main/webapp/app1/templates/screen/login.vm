@@ -1,0 +1,41 @@
+<form action="$app1Link.setTarget("login")" method="post">
+    $csrfToken.hiddenField
+    <input type="hidden" name="action" value="login_action"/>
+    #set ($group=$form.login.defaultInstance)
+    <p>login</p>
+    <p>#if($errorMsg) $errorMsg #end</p>
+    <p>
+        <input type="text" name="$group.name.key" placeholder="username" value="$!group.name.value"/>
+        #if(!$group.name.valid)
+        $group.name.message
+        #end
+        <input type="password" name="$group.passwd.key" placeholder="password" value="$group.passwd.value"/>
+        #if(!$group.passwd.valid)
+        $group.passwd.message
+        #end
+        <input type="submit" name="event_submit_do_check"/>
+    </p>
+</form>
+
+#*
+是一个from表单，form的action填写的内容为$app1Link.setTarget("login")，其
+中app1Link是webx3的url broker服务，他会根据特定配置动态渲染url，他是代表项目
+的根目录，调用setTarget方法，将target设置为login,这段代码的意思是，如果表单
+验证没通过，该页面还会跳转到本页面，本页面的地址就是用login这个target跳转过
+来的。因为该页面的名字是login（这就是webx框架的约定大于配置原则）
+接下来我们看隐藏域：
+<input type="hidden" name="action" value="login_action" /> 
+这个隐藏域的作用是，当页面通过表单验证之后，我们会跳转到隐藏域的value所指明
+的target。 这里配置的是一个action，那么pipeline会把执行转交到LoginAction类手
+中（原因也是遵循webx框架的约定大于配置原则）。具体执行哪个方法我们接下来会讲
+到，LoginAction做了哪些工作接下来也有写。
+#set ($group = $form.login.defaultInstance) 这里相当于定义了一个变量。该变量
+是个表单验证实例，接下来的if语句是控制是否输入错误信息的，仅当field验证通过
+时（即$group.field.valid=true），才显示错误信息。对于空白表单和通过验证的字
+段而言，$group.field.valid为true。
+<input type="text" name="$group.name.key" value="$!group.name.value"/> 利用
+新创建的group对象来生成表单字段，包括生成字段的名称$group.name.key，以及字段的值为$!group.name.value
+后面的密码与用户名同理。
+接下来就是提交按钮。根据name这个参数，表单被提交以后，系统会调用当前action
+（即LoginAction）的doCheck()方法（约定大于配置）。
+*#
