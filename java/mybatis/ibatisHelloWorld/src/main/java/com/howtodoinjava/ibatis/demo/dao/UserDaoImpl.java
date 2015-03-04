@@ -9,7 +9,7 @@ public class UserDaoImpl implements UserDAO {
     public UserTEO addUser(UserTEO user, SqlMapClient sqlmapClient) {
         try {
             Integer id = (Integer) sqlmapClient.queryForObject("user.getMaxId");
-            id = id == null ? 1 : id + 1;
+            id = id == null ? (Integer) 1 : (Integer) id + (Integer) 1;
             user.setId(id);
             user.setStatus(1);
             sqlmapClient.insert("user.addUser", user);
