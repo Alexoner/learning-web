@@ -3,12 +3,19 @@ package com.howtodoinjava.ibatis.demo.dao;
 import com.howtodoinjava.ibatis.demo.dto.UserTEO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+/*
+ * Data Access Object implementation
+ */
 public class UserDaoImpl implements UserDao {
 
     // @Override
     public UserTEO addUser(UserTEO user, SqlMapClient sqlmapClient) {
         try {
+            /*
+             * sqlmap-config.xml:<sqlMap namespace="user">
+             */
             Integer id = (Integer) sqlmapClient.queryForObject("user.getMaxId");
+            // Integer id = (Integer)getSqlMapClientTemplate().queryForObject("user.getMaxId");
             id = id == null ? Integer.valueOf(1) : Integer.valueOf(id.intValue() + 1);
             user.setId(id);
             user.setStatus(1);

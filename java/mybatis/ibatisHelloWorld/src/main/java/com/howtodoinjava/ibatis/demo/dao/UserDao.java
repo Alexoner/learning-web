@@ -3,6 +3,9 @@ package com.howtodoinjava.ibatis.demo.dao;
 import com.howtodoinjava.ibatis.demo.dto.UserTEO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+/*
+ * Data Access Object Interface
+ */
 public interface UserDao {
 
     public UserTEO addUser(UserTEO user, SqlMapClient sqlmapClient);

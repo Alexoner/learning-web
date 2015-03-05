@@ -1,5 +1,8 @@
 package com.howtodoinjava.ibatis.demo.dto;
 
+/*
+ * JavaBean as a data object
+ */
 public class UserTEO {
 
     private Integer id;

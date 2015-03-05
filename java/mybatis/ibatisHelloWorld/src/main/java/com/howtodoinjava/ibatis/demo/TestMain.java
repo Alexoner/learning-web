@@ -19,7 +19,7 @@ public class TestMain {
         Reader reader = Resources.getResourceAsReader("sqlmap-config.xml");
         SqlMapClient sqlmapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
 
-        // Create a new user to persist
+        // Create a new user to persistence
         UserTEO user = new UserTEO();
         user.setId(Integer.valueOf(1));
         user.setName("Demo User");
