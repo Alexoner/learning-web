@@ -10,7 +10,7 @@
 		<result property="status" column="STATUS" />
 	</resultMap>
 
-	<select id="getUserId" parameterClass="java.lang.Integer"
+	<select id="getUserById" parameterClass="java.lang.Integer"
 		resultMap="userResultMap">
 		SELECT * FROM USERINFO WHERE ID=#value#
 	</select>
@@ -19,10 +19,10 @@
 		SELECT MAX(ID) FROM USERINFO
 	</select>
 
-	<select id="addUser" parameterClass="USER">
+	<insert id="addUser" parameterClass="USER">
 		INSERT INTO USERINFO(ID,NAME,EMAIL,PASSWORD,STATUS)
 		VALUES(#id#,#name#,#email#,#password#,#status#);
-	</select>
+	</insert>
 
 	<delete id="deleteUserById" parameterClass="java.lang.Integer">
 		DELETE FROM USERINFO WHERE ID=#value#

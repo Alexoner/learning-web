@@ -36,5 +36,14 @@ public class TestMain {
 
         // Lets delete the user
         manager.deleteUserById(Integer.valueOf(1), sqlmapClient);
+
+        // insert another
+        user.setId(Integer.valueOf(1));
+        user.setName("John");
+        user.setPassword("passwd");
+        user.setEmail("demo@howtodoinjava.com");
+        user.setStatus(2);
+
+        manager.addUser(user, sqlmapClient);
     }
 }
