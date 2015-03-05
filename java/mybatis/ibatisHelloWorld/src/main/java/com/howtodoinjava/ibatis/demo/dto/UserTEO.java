@@ -24,7 +24,7 @@ public class UserTEO {
         return name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
