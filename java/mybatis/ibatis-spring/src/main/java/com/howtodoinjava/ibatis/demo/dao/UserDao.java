@@ -10,7 +10,11 @@ public interface UserDao {
 
     public UserTEO addUser(UserTEO user, SqlMapClient sqlmapClient);
 
+    public Integer getUserMaxId(SqlMapClient sqlmapClient);
+
     public UserTEO getUserById(Integer id, SqlMapClient sqlmapClient);
 
     public UserTEO deleteUserById(Integer id, SqlMapClient sqlmapClient);
+
+    public UserTEO getAUser(SqlMapClient sqlmapClient);
 }

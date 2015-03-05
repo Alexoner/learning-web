@@ -15,16 +15,22 @@
 		SELECT * FROM USERINFO WHERE ID=#value#
 	</select>
 
+	<select id="getAUser" resultMap="userResultMap">
+		SELECT * FROM USERINFO LIMIT 1
+	</select>
+
 	<select id="getMaxId" resultClass="java.lang.Integer">
 		SELECT MAX(ID) FROM USERINFO
 	</select>
 
 	<insert id="addUser" parameterClass="USER">
-		INSERT INTO USERINFO(ID,NAME,EMAIL,PASSWORD,STATUS)
+		INSERT INTO
+		USERINFO(ID,NAME,EMAIL,PASSWORD,STATUS)
 		VALUES(#id#,#name#,#email#,#password#,#status#);
 	</insert>
 
 	<delete id="deleteUserById" parameterClass="java.lang.Integer">
-		DELETE FROM USERINFO WHERE ID=#value#
+		DELETE FROM USERINFO
+		WHERE ID=#value#
 	</delete>
 </sqlMap>

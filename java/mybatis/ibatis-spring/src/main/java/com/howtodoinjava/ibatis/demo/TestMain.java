@@ -2,27 +2,26 @@ package com.howtodoinjava.ibatis.demo;
 
 import java.io.Reader;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.howtodoinjava.ibatis.demo.dao.UserDao;
-import com.howtodoinjava.ibatis.demo.dao.UserDaoImpl;
 import com.howtodoinjava.ibatis.demo.dto.UserTEO;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 public class TestMain {
 
     public static void main(String[] args) throws Exception {
 
-        //Initialize Spring
+        // Initialize Spring
         ApplicationContext appCxt = null;
-        //instantiate
+        // instantiate
         appCxt = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         // Initialize dao
-        UserDao manager = (UserDao)appCxt.getBean("UserDao");
+        UserDao manager = (UserDao) appCxt.getBean("UserDao");
 
         // Create the SQLMapClient
         Reader reader = Resources.getResourceAsReader("sqlmap-config.xml");
@@ -37,22 +36,14 @@ public class TestMain {
         user.setStatus(1);
 
         // Add the user
-        manager.addUser(user, sqlmapClient);
+        UserTEO createdUser = manager.addUser(user, sqlmapClient);
 
         // Fetch the user detail
-        UserTEO createdUser = manager.getUserById(Integer.valueOf(1), sqlmapClient);
-        System.out.println(createdUser.getEmail());
+        // UserTEO createdUser = manager.getUserById(Integer.valueOf(1), sqlmapClient);
+        // UserTEO createdUser = manager.getAUser(sqlmapClient);
+        System.out.println(createdUser.getId());
 
         // Lets delete the user
-        manager.deleteUserById(Integer.valueOf(1), sqlmapClient);
-
-        // insert another
-        user.setId(Integer.valueOf(1));
-        user.setName("John");
-        user.setPassword("passwd");
-        user.setEmail("demo@howtodoinjava.com");
-        user.setStatus(2);
-
-        manager.addUser(user, sqlmapClient);
+        manager.deleteUserById(manager.getUserMaxId(sqlmapClient), sqlmapClient);
     }
 }

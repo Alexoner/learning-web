@@ -29,10 +29,31 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    public Integer getUserMaxId(SqlMapClient sqlmapClient) {
+        try {
+            Integer id = (Integer) sqlmapClient.queryForObject("user.getMaxId");
+            return id;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public UserTEO getUserById(Integer id, SqlMapClient sqlmapClient) {
         // TODO Auto-generated method stub
         try {
             UserTEO user = (UserTEO) sqlmapClient.queryForObject("user.getUserById", id);
+            System.out.println(user);
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public UserTEO getAUser(SqlMapClient sqlmapClient) {
+        try {
+            UserTEO user = (UserTEO) sqlmapClient.queryForObject("user.getAUser");
             return user;
         } catch (Exception e) {
             e.printStackTrace();
