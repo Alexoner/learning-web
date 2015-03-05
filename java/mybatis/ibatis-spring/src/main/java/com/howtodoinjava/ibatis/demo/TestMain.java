@@ -9,11 +9,20 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class TestMain {
 
     public static void main(String[] args) throws Exception {
+
+        //Initialize Spring
+        ApplicationContext appCxt = null;
+        //instantiate
+        appCxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+
         // Initialize dao
-        UserDao manager = new UserDaoImpl();
+        UserDao manager = (UserDao)appCxt.getBean("UserDao");
 
         // Create the SQLMapClient
         Reader reader = Resources.getResourceAsReader("sqlmap-config.xml");
